@@ -1,20 +1,47 @@
-#ifndef ACCOUNT_H
-#define ACCOUNT_H
+#include<iostream>
+#include<string>
+#include<sstream>
 
-#include <string>
 using namespace std;
 
-class Account {
-public:
+class Account{
     string site;
     string username;
     string password;
 
-    Account();
-    Account(string s, string u, string p);
+    public:
+    Account(){
+        
+    }
+    Account(string site,string name,string pass){
+        this->site=site;
+        this->username=name;
+        this->password=pass;
+    }
+    string toFileString(){
+        string acc;
+        acc=site+"|"+username+"|"+password;
+        return acc;
 
-    string toFileString();     
-    static Account fromLine(string line);  
+    }
+    Account StringToAccount(string line){
+        string site,username,password;
+        stringstream ss(line);
+        getline(ss, site, '|');
+        getline(ss, username, '|');
+        getline(ss, password, '|');
+        Account acc=Account(site, username, password);
+        
+        return acc;
+    }
+    void print(){
+
+        cout<<"site: "<<site<<endl;
+        cout<<"username: "<<username<<endl;
+        cout<<"password: "<<password<<endl;
+    }
+    string getSite(){
+        return site;
+    }
+
 };
-
-#endif
