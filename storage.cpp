@@ -6,6 +6,10 @@ using namespace std;
 
 int main(){
 
-    fstream
+    class Storage{
+    public:
+    Storage(){
+    }
+};
     return 0;
 }
