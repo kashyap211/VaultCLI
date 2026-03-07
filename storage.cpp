@@ -8,7 +8,10 @@ int main(){
 
     class Storage{
     public:
-    Storage(){
+    Storage(int line){
+        loadFromFile();
+    }
+    void Load(){
     }
 };
     return 0;
