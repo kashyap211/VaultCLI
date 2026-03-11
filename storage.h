@@ -1,35 +1,29 @@
 #ifndef STORAGE_H
 #define STORAGE_H
 
-#include <string>
-#include <unordered_map>
-using namespace std;
+#include<unordered_map>
+#include"account.h"
 
-// Struct to hold account data
-struct DATA {
-    string username;
-    string password;
-};
 
-// Storage class to manage accounts
-class Storage {
+
+class Storage{
+private:
+std::unordered_map<std::string, Account> psd;
+
 public:
-    unordered_map<string, DATA> psd;
+Storage();
 
-    // Constructor
-    Storage();
+void loadFromFile();
 
-    // Add an account
-    void addAccount(const string& site, const string& username, const string& password);
+void saveToFile();
 
-    // Delete an account
-    void deleteAccount(const string& site);
+void addAccount(Account acc);
 
-    // View an account
-    void viewAccount(const string& site);
+void deleteAccount(std::string site);
 
-    // Search an account (safe version)
-    void searchAccount(const string& site);
+void searchAccount(std::string site);
+
+void viewAllAccount();
+
 };
-
 #endif // STORAGE_H

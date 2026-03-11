@@ -2,19 +2,27 @@
 #define ACCOUNT_H
 
 #include <string>
-using namespace std;
 
-class Account {
-public:
-    string site;
-    string username;
-    string password;
 
+class Account{
+  private:
+    std::string site;
+    std::string username;
+    std::string password;
+
+    public:
     Account();
-    Account(string s, string u, string p);
 
-    string toFileString();     
-    static Account fromLine(string line);  
+    Account(std::string site,std::string name,std::string pass);
+
+    std::string toFileString();
+
+    static Account StringToAccount(std::string line);
+    
+    void print() const;
+
+    std::string getSite();
+
 };
 
 #endif

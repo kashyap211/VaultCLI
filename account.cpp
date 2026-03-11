@@ -1,30 +1,25 @@
 #include<iostream>
 #include<string>
 #include<sstream>
+#include "account.h"
 
 using namespace std;
 
-class Account{
-    string site;
-    string username;
-    string password;
-
-    public:
-    Account(){
+    Account::Account(){
         
     }
-    Account(string site,string name,string pass){
+    Account::Account(string site,string name,string pass){
         this->site=site;
         this->username=name;
         this->password=pass;
     }
-    string toFileString(){
+    string Account::toFileString(){
         string acc;
         acc=site+"|"+username+"|"+password;
         return acc;
 
     }
-    Account StringToAccount(string line){
+    Account Account::StringToAccount(string line){
         string site,username,password;
         stringstream ss(line);
         getline(ss, site, '|');
@@ -34,14 +29,12 @@ class Account{
         
         return acc;
     }
-    void print(){
+    void Account::print() const{
 
         cout<<"site: "<<site<<endl;
         cout<<"username: "<<username<<endl;
         cout<<"password: "<<password<<endl;
     }
-    string getSite(){
+    string Account::getSite(){
         return site;
     }
-
-};
