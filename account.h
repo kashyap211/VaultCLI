@@ -20,6 +20,8 @@ class Account{
     static Account StringToAccount(std::string line);
     
     void print() const;
+    void setUsername(std::string newUsername);
+    void setPassword(std::string newPassword);
 
     std::string getSite();
 

@@ -54,6 +54,51 @@ void Storage::deleteAccount(string site){
     }
 }
 
+void Storage::updateAccount(string site,int choice){
+    auto it=psd.find(site);
+    if(it!=psd.end()){
+        switch (choice)
+        {
+        case 1:{
+            cout<<"Enter the new password: "<<std::endl;
+                std::string passw;
+                std::cin>>passw;
+                it->second.setPassword(passw);
+                saveToFile();
+                break;
+        }
+            case 2:{
+                cout<<"Enter the new Username: "<<std::endl;
+                std::string name;
+                std::cin>>name;
+                it->second.setUsername(name);
+                saveToFile();
+                break;
+            }
+            case 3:{
+                cout<<"Enter the new Username: "<<std::endl;
+                std::string username;
+                std::cin>>username;
+                it->second.setUsername(username);
+                cout<<"Enter the new password: "<<std::endl;
+                std::string passw;
+                std::cin>>passw;
+                it->second.setPassword(passw);
+                saveToFile();
+                break;
+            }
+        default:{
+        cout<<"Enter the right choice"<<std::endl;
+            break;
+            }
+        }
+    }
+
+    else{
+        std::cout<<"Account not found"<<std::endl;
+    }
+}
+
 void Storage::searchAccount(string site){
     auto it=psd.find(site);
     if(it!=psd.end()){
@@ -67,6 +112,7 @@ void Storage::searchAccount(string site){
 void Storage::viewAllAccount(){
     for(const auto &it:psd){
         it.second.print();
+        std::cout<<" \n";
     }
 }
 

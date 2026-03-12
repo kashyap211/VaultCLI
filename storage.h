@@ -21,6 +21,10 @@ void addAccount(Account acc);
 
 void deleteAccount(std::string site);
 
+void updateAccount(std::string site,int choice);
+    
+
+
 void searchAccount(std::string site);
 
 void viewAllAccount();
