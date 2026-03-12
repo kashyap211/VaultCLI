@@ -27,6 +27,9 @@ void updateAccount(std::string site,int choice);
 
 void searchAccount(std::string site);
 
+void PartialSearchAccount(std::string keyword);
+
+
 void viewAllAccount();
 
 };

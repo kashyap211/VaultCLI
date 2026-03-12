@@ -10,7 +10,7 @@ int main(){
     while(run){
     std::cout<<"--------- Welcome to password Manager -----------"<<std::endl;
     int choice;
-    std::cout <<"1. Add account\n2. View accounts\n3. Search account\n4. Delete account\n5. Update Account\n6. Exit\n";
+    std::cout <<"1. Add account\n2. View accounts\n3. Search account(O(1))\n4. Partial Search(O(n))\n5. Delete account\n6. Update Account\n7. Exit\n";
     std::cout<<"--------- Enter Your choice ---------------------"<<std::endl;
     std::cout<<std::endl;
     std::cin>>choice;
@@ -43,12 +43,19 @@ int main(){
         }
         case 4:{
             std::string site;
+            std::cout<<"Enter the site name"<<std::endl;
+            std::cin>>site;
+            storage.PartialSearchAccount(site);
+        break;
+        }
+        case 5:{
+            std::string site;
             std::cout<<"Enter the site "<<std::endl;
             std::cin>>site;
             storage.deleteAccount(site);
         break;
         }
-        case 5:{
+        case 6:{
             std::string site;
             int choice2;
             std::cout<<"Enter the site name"<<std::endl;
@@ -58,7 +65,7 @@ int main(){
             storage.updateAccount(site,choice2);
             break;
         }
-        case 6:
+        case 7:
             run=false;
         break;
 

@@ -109,6 +109,21 @@ void Storage::searchAccount(string site){
         cout<<"Account not found"<<endl;
     }
 }
+
+void Storage::PartialSearchAccount(std::string keyword){
+    bool found=false;
+    for(auto &it:psd){
+        if(it.first.find(keyword)!=std::string::npos){
+            found=true;
+            it.second.print();
+            std::cout<<" \n";
+        }
+    }
+    if(found==false){
+        std::cout<<"Account not found"<<endl;
+    }
+}
+
 void Storage::viewAllAccount(){
     for(const auto &it:psd){
         it.second.print();

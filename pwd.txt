@@ -1,0 +1,3 @@
+gitbucket|admin|chulara
+google|admin|gulara
+github|admin|hulara
