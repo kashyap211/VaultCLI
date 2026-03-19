@@ -1,8 +1,8 @@
-#ifndef STORAGE_H
-#define STORAGE_H
+#ifndef STORAGE_HPP
+#define STORAGE_HPP
 
 #include<unordered_map>
-#include"account.h"
+#include"account.hpp"
 
 
 

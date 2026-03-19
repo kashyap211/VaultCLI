@@ -1,8 +1,8 @@
 #include<iostream>
 #include<fstream>
 #include<unordered_map>
-#include "storage.h"
-#include"utils.h"
+#include "storage.hpp"
+#include"utils.hpp"
 
 using namespace std;
 
