@@ -2,6 +2,7 @@
 #include<fstream>
 #include<unordered_map>
 #include "storage.h"
+#include"utils.h"
 
 using namespace std;
 
@@ -60,12 +61,26 @@ void Storage::updateAccount(string site,int choice){
         switch (choice)
         {
         case 1:{
+            cout<<"1.Enter password manually\n2. Generate password\n";
+            int option;
+            cin>>option;
+            if(option==1){
             cout<<"Enter the new password: "<<std::endl;
                 std::string passw;
                 std::cin>>passw;
                 it->second.setPassword(passw);
+                saveToFile(); 
+            }
+            else if(option==2){
+                std::string genPass = GeneratePassword();
+                it->second.setPassword(genPass);
+                cout << "Generated Password: " << genPass << endl;
                 saveToFile();
-                break;
+            }
+            else{
+                cout<<"Enter correct choice";
+            }
+            break;
         }
             case 2:{
                 cout<<"Enter the new Username: "<<std::endl;

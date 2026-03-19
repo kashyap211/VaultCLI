@@ -25,6 +25,7 @@ class Account{
 
     std::string getSite();
 
+
 };
 
 #endif

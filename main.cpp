@@ -1,9 +1,12 @@
 #include<iostream>
 #include"storage.h"
 #include"account.h"
+#include"utils.h"
+#include <ctime>
 
 
 int main(){
+    srand(time(0));
     Storage storage;
     bool run=true;
     
@@ -23,11 +26,25 @@ int main(){
             std::cin.ignore();
             std::cout<<"Enter the name of username"<<std::endl;
             std::getline(std::cin,username);
+            std::cout<<"\n1. Enter password manually\n2. Generate password\n"<<std::endl;
+            int passChoice;
+            std::cin>>passChoice;
+
+            if(passChoice==1){
             std::cout<<"Enter the name of password"<<std::endl;
             std::cin>>password;
-
+            }
+            if(passChoice==2){
+                password=GeneratePassword();
+                std::cout<<"Generated password is:"<<password<<std::endl;
+            }
+            else{
+                std::cout<<"Enter valid choice";
+            }
+        
             Account acc(site,username,password);
             storage.addAccount(acc);
+            std::cout<<"Account stored successfully\n";
         break;
         }
         case 2:{
