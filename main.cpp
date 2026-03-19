@@ -31,8 +31,8 @@ int main(){
             std::cin>>passChoice;
 
             if(passChoice==1){
-            std::cout<<"Enter the name of password"<<std::endl;
-            std::cin>>password;
+            std::cout<<"Enter the password"<<std::endl;
+            password = getHiddenPassword();
             }
             if(passChoice==2){
                 password=GeneratePassword();

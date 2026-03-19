@@ -1,6 +1,7 @@
 #include "utils.h"
 #include<iostream>
 #include <cstdlib>
+#include<conio.h>
 
 
 std::string GeneratePassword(){
@@ -13,3 +14,26 @@ std::string GeneratePassword(){
         }
         return password;
     }
+std::string getHiddenPassword(){
+    std::string password="";
+    char ch;
+
+    while(true){
+        ch=_getch();
+
+        if(ch==13) break;
+
+        if(ch==8){
+            if(!password.empty()){
+                password.pop_back();
+                std::cout<<"\b \b";
+            }
+        }
+        else{
+            password +=ch;
+            std::cout<<"*";
+        }
+    }
+    std::cout<< std::endl;
+    return password;
+}
