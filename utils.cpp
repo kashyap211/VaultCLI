@@ -37,3 +37,11 @@ std::string getHiddenPassword(){
     std::cout<< std::endl;
     return password;
 }
+
+std::string xorEncryptDecrypt(std::string data,std::string key){
+    std::string result=data;
+    for(int i=0;i<data.length();i++){
+        result[i]=data[i] ^ key[i%key.length()];
+    }
+    return result;
+}

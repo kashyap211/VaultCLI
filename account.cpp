@@ -2,6 +2,7 @@
 #include<string>
 #include<sstream>
 #include "account.hpp"
+#include"utils.hpp"
 
 using namespace std;
 
@@ -15,7 +16,9 @@ using namespace std;
     }
     string Account::toFileString(){
         string acc;
-        acc=site+"|"+username+"|"+password;
+        std::string key="mysecretpass";
+        std::string encryptedPass= xorEncryptDecrypt(password,key);
+        acc=site+"|"+username+"|"+encryptedPass;
         return acc;
 
     }
@@ -26,7 +29,9 @@ using namespace std;
         getline(ss, site, '|');
         getline(ss, username, '|');
         getline(ss, password, '|');
-        Account acc=Account(site, username, password);
+        std::string key="mysecretpass";
+        std::string orgPassword=xorEncryptDecrypt(password,key);
+        Account acc=Account(site, username, orgPassword);
         
         return acc;
     }
