@@ -1,6 +1,8 @@
 #include "utils.hpp"
 #include<iostream>
 #include <cstdlib>
+#include<functional>
+#include<string>
 #include<conio.h>
 
 
@@ -44,4 +46,9 @@ std::string xorEncryptDecrypt(std::string data,std::string key){
         result[i]=data[i] ^ key[i%key.length()];
     }
     return result;
+}
+
+std::string hashPassword(std::string password){
+    std::hash<std::string>h;
+    return std::to_string(h(password));
 }

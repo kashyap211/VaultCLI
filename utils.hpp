@@ -7,5 +7,6 @@ std::string GeneratePassword();
 std::string getHiddenPassword();
 std::string xorEncryptDecrypt(std::string data,std::string key);
 
+std::string hashPassword(std::string password);
 
 #endif
