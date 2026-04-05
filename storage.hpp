@@ -10,8 +10,10 @@ class Storage{
 private:
 std::unordered_map<std::string, Account> psd;
 
+
 public:
-Storage();
+std::string key;
+Storage(std::string key);
 
 void loadFromFile();
 

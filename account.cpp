@@ -14,22 +14,20 @@ using namespace std;
         this->username=name;
         this->password=pass;
     }
-    string Account::toFileString(){
+    string Account::toFileString(std::string key){
         string acc;
-        std::string key="mysecretpass";
         std::string encryptedPass= xorEncryptDecrypt(password,key);
         acc=site+"|"+username+"|"+encryptedPass;
         return acc;
 
     }
 
-    Account Account::StringToAccount(std::string line){
+    Account Account::StringToAccount(std::string line, std::string key){
         string site,username,password;
         stringstream ss(line);
         getline(ss, site, '|');
         getline(ss, username, '|');
         getline(ss, password, '|');
-        std::string key="mysecretpass";
         std::string orgPassword=xorEncryptDecrypt(password,key);
         Account acc=Account(site, username, orgPassword);
         

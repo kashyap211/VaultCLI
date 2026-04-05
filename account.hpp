@@ -15,9 +15,9 @@ class Account{
 
     Account(std::string site,std::string name,std::string pass);
 
-    std::string toFileString();
+    std::string toFileString(std::string key);
 
-    static Account StringToAccount(std::string line);
+    static Account StringToAccount(std::string line,std::string key);
     
     void print() const;
     void setUsername(std::string newUsername);

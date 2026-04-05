@@ -1,4 +1,6 @@
 #include<iostream>
+#include <thread>
+#include <chrono>
 #include"storage.hpp"
 #include"account.hpp"
 #include"utils.hpp"
@@ -8,11 +10,10 @@
 
 int main(){
     srand(time(0));
-    Storage storage;
     bool run=true;
+    std::string masterPassword;
     
-    while(run){
-    std::cout<<"--------- Welcome to password Manager -----------"<<std::endl;
+    
     std::ifstream file("master.txt");
     if(!file){
         std::string masterPwd;
@@ -22,24 +23,42 @@ int main(){
         std::ofstream fout("master.txt");
         fout<<hashed;
         fout.close();
+        masterPassword=masterPwd;
         std::cout << "Master password set!\n";
     }else{
-    std::cout<<"Enter Your Master Password: ";
-    std::string masterPassword;
-    masterPassword=getHiddenPassword();
-    std::ifstream fin("master.txt");
-    std::string pass;
-    getline(fin,pass);
-    fin.close();
-    if(hashPassword(masterPassword)==pass){
-        std::cout<<"Access Granted";
+        int counter=3;
+        bool auth=false;
+
+        while(counter>0){
+            std::cout<<"Enter Your Master Password: ";
+            std::string masterPwd;
+            masterPwd=getHiddenPassword();
+            std::ifstream fin("master.txt");
+            std::string pass;
+            getline(fin,pass);
+            fin.close();
+            if(hashPassword(masterPwd)==pass){
+                std::cout<<"Access Granted\n";
+                auth=true;
+                masterPassword=pass;
+                break;
+            }
+            else{
+                counter--;
+                std::cout<<"Wrong password, You have "<<counter<<"attempts left\n";
+                //std::this_thread::sleep_for(std::chrono::seconds(2));
+            }
+        }
+        if(!auth){
+            std::cout<<"You have many invalid attempts";
+            run=false;
+            return 0;
+        } 
     }
-    else{
-        std::cout<<"Access denied";
-        return 0;
-    }
-    }
+    Storage storage(masterPassword);
     
+    while(run){
+    std::cout<<"--------- Welcome to password Manager -----------"<<std::endl;
 
     int choice;
     std::cout <<"1. Add account\n2. View accounts\n3. Search account(O(1))\n4. Partial Search(O(n))\n5. Delete account\n6. Update Account\n7. Exit\n";
@@ -63,7 +82,7 @@ int main(){
             std::cout<<"Enter the password"<<std::endl;
             password = getHiddenPassword();
             }
-            if(passChoice==2){
+            else if(passChoice==2){
                 password=GeneratePassword();
                 std::cout<<"Generated password is:"<<password<<std::endl;
             }

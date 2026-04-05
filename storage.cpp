@@ -7,8 +7,8 @@
 using namespace std;
 
 
-Storage::Storage(){
-
+Storage::Storage(std::string key){
+    this->key=key;
     loadFromFile();
 }
 
@@ -20,7 +20,7 @@ void Storage::loadFromFile(){
         return ;
     }
     while(getline(sin,st1)){
-        Account acc= Account::StringToAccount(st1);
+        Account acc= Account::StringToAccount(st1,key);
         psd[acc.getSite()]=acc;
     }
     
@@ -34,7 +34,7 @@ void Storage::saveToFile(){
         return;
     }
         for(auto &acc:psd){
-            st2=acc.second.toFileString();
+            st2=acc.second.toFileString(key);
             sout<<st2<<endl;
         }
     sout.close();
